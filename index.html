@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Word Count Calculator</title>
+  <style>
+	  body {
+	  font-family: Arial, sans-serif;
+	  padding: 20px;
+	}
+
+	h1 {
+	  text-align: center;
+	}
+
+	form {
+	  margin-bottom: 20px;
+	}
+
+	label {
+	  display: inline-block;
+	  width: 120px;
+	  font-weight: bold;
+	}
+
+	input[type="text"] {
+	  width: 200px;
+	  padding: 5px;
+	  font-size: 16px;
+	}
+
+	input[type="submit"] {
+	  padding: 10px 20px;
+	  font-size: 16px;
+	}
+
+	#resultContainer {
+	  font-size: 18px;
+	  font-weight: bold;
+	  margin-top: 10px;
+	}
+  </style>
+</head>
+<body>
+  <h1>Word Count Calculator</h1>
+  <form id="wordCountForm">
+    <label for="letter1">Enter Letter 1:</label>
+    <input type="text" id="letter1" required><br><br>
+    <label for="letter2">Enter Letter 2:</label>
+    <input type="text" id="letter2" required><br><br>
+    <input type="submit" value="Calculate">
+  </form>
+
+  <div id="resultContainer"></div>
+
+  <script>
+    function calculateWordCount(letter1, letter2) {
+      // Word counts object
+      const wordCounts = {
+        s: 25333,
+        p: 24472,
+        c: 19851,
+        a: 16869,
+        u: 16520,
+        t: 12976,
+        m: 12503,
+        b: 11117,
+        d: 11107,
+        r: 9918,
+        h: 9105,
+        i: 8819,
+        e: 8748,
+        o: 7877,
+        f: 7152,
+        g: 6969,
+        n: 6758,
+        l: 6322,
+        w: 4074,
+        v: 3416,
+        k: 2234,
+        j: 1637,
+        q: 1179,
+        z: 963,
+        y: 680,
+        x: 384
+      };
+
+      const count1 = wordCounts[letter1] || 0;
+      const count2 = wordCounts[letter2] || 0;
+
+      return count1 * count2;
+    }
+
+    // Form submit event handler
+    document.getElementById('wordCountForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get the input values
+      const letter1 = document.getElementById('letter1').value.toLowerCase();
+      const letter2 = document.getElementById('letter2').value.toLowerCase();
+
+      // Calculate the word count
+      const result = calculateWordCount(letter1, letter2);
+
+      // Display the result
+      document.getElementById('resultContainer').innerText = `Result: ${result}`;
+    });
+  </script>
+</body>
+</html>
